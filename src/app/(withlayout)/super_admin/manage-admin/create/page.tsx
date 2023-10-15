@@ -1,15 +1,11 @@
 "use client";
 
-import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { getUserInfo } from "@/services/auth.service";
-import { Button } from "antd";
-import Link from "next/link";
 import React from "react";
 
-const ManageAdmin = () => {
+const CreatePage = () => {
   const { role } = getUserInfo() as any;
-
   return (
     <div>
       <UMBreadCrumb
@@ -22,14 +18,15 @@ const ManageAdmin = () => {
             label: "manage-admin",
             link: `/${role}/manage-admin`,
           },
+          {
+            label: "create",
+            link: `/${role}/manage-admin/create`,
+          },
         ]}
       />
-
-      <ActionBar title="Admin List">
-        <Button type="primary">Create Admin</Button>
-      </ActionBar>
+      <h1>This is admin create page</h1>
     </div>
   );
 };
 
-export default ManageAdmin;
+export default CreatePage;
