@@ -4,7 +4,7 @@ import { useGetSingleUserQuery } from "@/redux/features/user/userApi";
 import { getUserInfo } from "@/services/auth.service";
 import React from "react";
 
-const ProfilePage = () => {
+const AdminPage = () => {
   const { _id } = getUserInfo() as any;
 
   const { data, isLoading } = useGetSingleUserQuery(_id);
@@ -20,4 +20,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default AdminPage;
