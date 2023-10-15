@@ -26,7 +26,9 @@ const ManageAdmin = () => {
       />
 
       <ActionBar title="Admin List">
-        <Button type="primary">Create Admin</Button>
+        <Link href="/super_admin/manage-admin/create">
+          <Button type="primary">Create Admin</Button>
+        </Link>
       </ActionBar>
     </div>
   );
