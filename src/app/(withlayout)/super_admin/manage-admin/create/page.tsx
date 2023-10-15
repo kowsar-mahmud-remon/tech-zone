@@ -3,21 +3,39 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import { useCreateAdminMutation } from "@/redux/features/admin/adminApi";
+import { adminSchema } from "@/schemas/admin";
 import { getUserInfo } from "@/services/auth.service";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
 
 const CreatePage = () => {
   const { role } = getUserInfo() as any;
 
+  const [createAdmin, { data: adminData }] = useCreateAdminMutation();
+
+  console.log({ adminData });
+
   const onSubmit = async (data: any) => {
+    message.loading("Creating...");
     try {
       const userData = {
         ...data,
-        role: "user",
+        role: "admin",
       };
+
+      const res: any = await createAdmin(userData);
+
+      if (res?.data?.success) {
+        message.success("Admin created successful");
+      } else {
+        message.error("Failed to create admin");
+      }
+
       console.log(userData);
     } catch (err: any) {
       console.error(err.message);
+      message.error(err.message);
     }
   };
 
@@ -57,7 +75,7 @@ const CreatePage = () => {
         >
           Admin Information
         </p>
-        <Form submitHandler={onSubmit}>
+        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
           <Row gutter={{ lg: 32 }}>
             <Col sm={24} md={24} lg={12}>
               <div
