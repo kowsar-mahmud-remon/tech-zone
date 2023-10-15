@@ -2,12 +2,14 @@
 
 import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 const { Header: AntHeader } = Layout;
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
+  const [role, setRole] = useState("");
 
   const logOut = () => {
     removeUserInfo("accessToken");
@@ -24,7 +26,12 @@ const Header = () => {
       ),
     },
   ];
-  const { role } = getUserInfo() as any;
+
+  useEffect(() => {
+    const { role } = getUserInfo() as any;
+    setRole(role);
+  }, []);
+
   return (
     <AntHeader
       style={
@@ -43,10 +50,12 @@ const Header = () => {
         <p
           style={{
             margin: "0px 5px",
+            color: "white",
           }}
         >
           {role}
         </p>
+
         <Dropdown menu={{ items }}>
           <a>
             <Space wrap size={16}>
