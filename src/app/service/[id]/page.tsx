@@ -7,50 +7,17 @@ import { Button, Col, Row, message } from "antd";
 import Review from "@/components/Review/Review";
 import CreateReview from "@/components/Review/CreateReview";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
+import { useState } from "react";
+import RepairDetails from "@/components/RepairDetails/RepairDetails";
 
 const { Meta } = Card;
 
 const NestedPage = ({ params }: any) => {
-  const userLoggedIn = isLoggedIn();
-
   const { id } = params;
 
   const { data, isLoading } = useGetSingleServiceQuery(id);
 
   const serviceDetails = data?.data;
-
-  const repairDetails = [
-    {
-      id: "1",
-      title: "Charging Port Replacement",
-      img: "https://computerrepairdoctor.com/wp-content/uploads/2022/12/icon-charging.png.webp",
-    },
-    {
-      id: "2",
-      title: "Data Recovery",
-      img: "https://computerrepairdoctor.com/wp-content/uploads/2022/12/icon-datarecovery.png.webp",
-    },
-    {
-      id: "3",
-      title: "Speaker Replacement",
-      img: "https://computerrepairdoctor.com/wp-content/uploads/2022/12/icon-volume.png.webp",
-    },
-    {
-      id: "4",
-      title: "Motherboard Repair",
-      img: "https://computerrepairdoctor.com/wp-content/uploads/2022/12/icon-motherboard.png.webp",
-    },
-    {
-      id: "5",
-      title: "Battery Replacement",
-      img: "https://computerrepairdoctor.com/wp-content/uploads/2022/12/icon-battery.png.webp",
-    },
-    {
-      id: "6",
-      title: "Other Repair",
-      img: "https://computerrepairdoctor.com/wp-content/uploads/2022/12/icon-other.png.webp",
-    },
-  ];
 
   return (
     <div
@@ -85,7 +52,8 @@ const NestedPage = ({ params }: any) => {
                 color: "#4D4D4D",
               }}
             >
-              <span>Repairs Price: </span>${serviceDetails?.price}
+              <span style={{ color: "black" }}>Repairs Price: </span>$
+              {serviceDetails?.price}
             </p>
             <p
               style={{
@@ -96,6 +64,16 @@ const NestedPage = ({ params }: any) => {
             >
               {serviceDetails?.description}
             </p>
+
+            <Button
+              type="primary"
+              size="large"
+              style={{
+                margin: "20px 0",
+              }}
+            >
+              Booking Now
+            </Button>
           </div>
         </Col>
         <Col sm={24} md={12} lg={10}>
@@ -115,90 +93,10 @@ const NestedPage = ({ params }: any) => {
         </Col>
       </Row>
 
-      <Row
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          fontSize: "22px",
-          marginTop: "50px",
-        }}
-      >
-        <h2>Computer Common Repairs</h2>
-      </Row>
-      <Row
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "30px 0",
-          fontSize: "20px",
-          color: "#4D4D4D",
-        }}
-      >
-        <p>
-          Our Dedicated Team Of Repair Experts Are Always Available To Get Your
-          Computer Working Like Brand New
-        </p>
-      </Row>
+      <RepairDetails></RepairDetails>
 
-      <Row
-        gutter={{ lg: 32 }}
-        style={{
-          padding: "40px 0",
-        }}
-      >
-        {repairDetails?.map((details: any) => (
-          <Col sm={24} md={24} lg={8} key={details?.id}>
-            <div
-              style={{
-                marginBottom: "50px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Image
-                  alt="service img"
-                  width={50}
-                  height={50}
-                  src={details?.img}
-                />
-              </div>
-              <p
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "30px 0px",
-                  fontSize: "18px",
-                }}
-              >
-                {details?.title}
-              </p>
-            </div>
-          </Col>
-        ))}
-      </Row>
+      <CreateReview id={id}></CreateReview>
 
-      {userLoggedIn ? (
-        <CreateReview id={id}></CreateReview>
-      ) : (
-        <p
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: "18px",
-            color: "red",
-            margin: "20px 0",
-          }}
-        >
-          Login & Add Review
-        </p>
-      )}
       <Review id={id}></Review>
     </div>
   );
