@@ -66,12 +66,21 @@ const ProductService = () => {
                     />
                   }
                 >
-                  <Meta
+                  {/* <Meta
                     justify="center"
                     align="middle"
                     title={service?.name}
-                    // description="www.instagram.com"
-                  />
+                    description="www.instagram.com"
+                  /> */}
+                  <h3
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    {service?.name}
+                  </h3>
                 </Card>
               </div>
             </Link>

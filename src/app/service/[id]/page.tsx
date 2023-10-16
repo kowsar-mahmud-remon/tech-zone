@@ -167,7 +167,7 @@ const NestedPage = ({ params }: any) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  margin: "16px 0px",
+                  margin: "30px 0px",
                   fontSize: "18px",
                 }}
               >
