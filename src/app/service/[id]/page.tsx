@@ -4,6 +4,7 @@ import { useGetSingleServiceQuery } from "@/redux/features/service/serviceApi";
 import { Card } from "antd";
 import Image from "next/image";
 import { Button, Col, Row, message } from "antd";
+import Review from "@/components/Review/Review";
 
 const { Meta } = Card;
 
@@ -177,6 +178,8 @@ const NestedPage = ({ params }: any) => {
           </Col>
         ))}
       </Row>
+
+      <Review id={id}></Review>
     </div>
   );
 };
