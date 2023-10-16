@@ -5,10 +5,14 @@ import { Card } from "antd";
 import Image from "next/image";
 import { Button, Col, Row, message } from "antd";
 import Review from "@/components/Review/Review";
+import CreateReview from "@/components/Review/CreateReview";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 
 const { Meta } = Card;
 
 const NestedPage = ({ params }: any) => {
+  const userLoggedIn = isLoggedIn();
+
   const { id } = params;
 
   const { data, isLoading } = useGetSingleServiceQuery(id);
@@ -179,6 +183,22 @@ const NestedPage = ({ params }: any) => {
         ))}
       </Row>
 
+      {userLoggedIn ? (
+        <CreateReview id={id}></CreateReview>
+      ) : (
+        <p
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "18px",
+            color: "red",
+            margin: "20px 0",
+          }}
+        >
+          Login & Add Review
+        </p>
+      )}
       <Review id={id}></Review>
     </div>
   );

@@ -12,6 +12,17 @@ const Review = ({ id }: any) => {
   return (
     <div>
       <Row
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "22px",
+          marginTop: "60px",
+        }}
+      >
+        <h2>Users Reviews</h2>
+      </Row>
+      <Row
         gutter={{ lg: 32 }}
         style={{
           padding: "40px 0",
@@ -22,6 +33,8 @@ const Review = ({ id }: any) => {
             <div
               style={{
                 marginBottom: "50px",
+                border: "1px solid silver",
+                borderRadius: "10px",
               }}
             >
               <p
@@ -32,7 +45,17 @@ const Review = ({ id }: any) => {
                   fontSize: "18px",
                 }}
               >
-                {details?.review}
+                Name: {details?.userId?.name}
+              </p>
+              <p
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "30px 0px",
+                  fontSize: "18px",
+                }}
+              >
+                Review: {details?.review}
               </p>
             </div>
           </Col>
