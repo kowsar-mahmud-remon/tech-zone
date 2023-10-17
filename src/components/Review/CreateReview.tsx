@@ -7,6 +7,7 @@ import { Button, Col, Row, message } from "antd";
 import FormTextArea from "../Forms/FormTextArea";
 import { useCreateReviewMutation } from "@/redux/features/review/reviewApi";
 import { reviewSchema } from "@/schemas/review";
+import FormInput from "../Forms/FormInput";
 
 const CreateReview = ({ id }: any) => {
   const [createReview] = useCreateReviewMutation();
@@ -18,7 +19,6 @@ const CreateReview = ({ id }: any) => {
     try {
       const reviewData = {
         ...data,
-        rating: 5,
         userId: _id,
         serviceId: id,
       };
@@ -68,7 +68,23 @@ const CreateReview = ({ id }: any) => {
                   fontSize: "18px",
                 }}
               >
-                <FormTextArea name="review" label="Review" rows={4} />
+                <FormTextArea name="review" label="Review *" rows={4} />
+              </div>
+            </Col>
+
+            <Col sm={24} md={24} lg={12}>
+              <div
+                style={{
+                  marginBottom: "15px",
+                  fontSize: "18px",
+                }}
+              >
+                <FormInput
+                  name="rating"
+                  type="number"
+                  size="large"
+                  label="Rating *"
+                />
               </div>
             </Col>
           </Row>

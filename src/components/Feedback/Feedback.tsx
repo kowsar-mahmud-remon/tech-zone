@@ -1,16 +1,13 @@
 "use client";
 
-import {
-  useGetAllReviewsQuery,
-  useGetSingleReviewQuery,
-} from "@/redux/features/review/reviewApi";
+import { useGetSingleFeedbackQuery } from "@/redux/features/feedback/feedbackApi";
 import { Col, Row } from "antd";
 import React from "react";
 
-const Review = ({ id }: any) => {
-  const { data, isLoading } = useGetSingleReviewQuery(id);
+const Feedback = ({ id }: any) => {
+  const { data, isLoading } = useGetSingleFeedbackQuery(id);
 
-  const reviewDetails = data?.data;
+  const feedbackDetails = data?.data;
   return (
     <div>
       <Row
@@ -22,7 +19,7 @@ const Review = ({ id }: any) => {
           marginTop: "60px",
         }}
       >
-        <h2>Users Reviews</h2>
+        <h2>Users Feedback</h2>
       </Row>
       <Row
         gutter={{ lg: 32 }}
@@ -30,7 +27,7 @@ const Review = ({ id }: any) => {
           padding: "40px 0",
         }}
       >
-        {reviewDetails?.map((details: any) => (
+        {feedbackDetails?.map((details: any) => (
           <Col sm={24} md={24} lg={12} key={details?._id}>
             <div
               style={{
@@ -57,7 +54,7 @@ const Review = ({ id }: any) => {
                   fontSize: "18px",
                 }}
               >
-                Rating: {details?.rating}
+                Email: {details?.userId?.email}
               </p>
               <p
                 style={{
@@ -67,7 +64,7 @@ const Review = ({ id }: any) => {
                   fontSize: "18px",
                 }}
               >
-                Review: {details?.review}
+                Feedback: {details?.feedback}
               </p>
             </div>
           </Col>
@@ -77,4 +74,4 @@ const Review = ({ id }: any) => {
   );
 };
 
-export default Review;
+export default Feedback;
