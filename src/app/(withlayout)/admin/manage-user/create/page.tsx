@@ -3,56 +3,43 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { useCreateAdminMutation } from "@/redux/features/admin/adminApi";
-import {
-  useGetSingleUserQuery,
-  useUpdateUserMutation,
-} from "@/redux/features/user/userApi";
+import { useCreateUserMutation } from "@/redux/features/user/userApi";
 import { adminSchema } from "@/schemas/admin";
-import { editAdminSchema } from "@/schemas/editAdminSchema";
+import { userSchema } from "@/schemas/user";
 import { getUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
 import { useRouter } from "next/navigation";
 
-const EditProfile = () => {
-  const { _id, role } = getUserInfo() as any;
+const CreatePage = () => {
+  const { role } = getUserInfo() as any;
 
   const router = useRouter();
 
-  const { data: superAdminData, isLoading } = useGetSingleUserQuery(_id);
-  // console.log(superAdminData?.data);
-
-  const [updateUser, { data: userData }] = useUpdateUserMutation();
+  const [createUser] = useCreateUserMutation();
 
   const onSubmit = async (data: any) => {
     message.loading("Creating...");
     try {
-      const updatedData = {
-        id: _id,
-        data,
+      const userData = {
+        ...data,
+        role: "user",
       };
 
-      const res: any = await updateUser(updatedData);
+      const res: any = await createUser(userData);
 
       if (res?.data?.success) {
-        message.success("Admin Updated successful");
-        router.push(`/${role}`);
+        message.success("User created successful");
+        router.push(`/${role}/manage-user`);
       } else {
-        message.error("Failed to update admin");
+        message.error("Failed to create User");
       }
+
+      console.log(userData);
     } catch (err: any) {
       console.error(err.message);
       message.error(err.message);
     }
-  };
-
-  const defaultValues = {
-    name: superAdminData?.data?.name || "",
-    imgUrl: superAdminData?.data?.imgUrl || "",
-    email: superAdminData?.data?.email || "",
-    contactNo: superAdminData?.data?.contactNo || "",
-    address: superAdminData?.data?.address || "",
   };
 
   return (
@@ -64,12 +51,16 @@ const EditProfile = () => {
             link: `/${role}`,
           },
           {
-            label: "edit-profile",
-            link: `/${role}/edit-profile`,
+            label: "manage-admin",
+            link: `/${role}/manage-user`,
+          },
+          {
+            label: "create",
+            link: `/${role}/manage-user/create`,
           },
         ]}
       />
-      <h1>Update profile</h1>
+      <h1>Create User</h1>
 
       <div
         style={{
@@ -85,13 +76,9 @@ const EditProfile = () => {
             marginBottom: "15px",
           }}
         >
-          Super Admin Information
+          User Information
         </p>
-        <Form
-          submitHandler={onSubmit}
-          defaultValues={defaultValues}
-          resolver={yupResolver(editAdminSchema)}
-        >
+        <Form submitHandler={onSubmit} resolver={yupResolver(userSchema)}>
           <Row gutter={{ lg: 32 }}>
             <Col sm={24} md={24} lg={12}>
               <div
@@ -103,7 +90,7 @@ const EditProfile = () => {
                   name="name"
                   type="text"
                   size="large"
-                  label="Super Admin Name *"
+                  label="User Name *"
                 />
               </div>
             </Col>
@@ -117,7 +104,7 @@ const EditProfile = () => {
                   name="imgUrl"
                   type="text"
                   size="large"
-                  label="Super Admin ImgUrl *"
+                  label="User ImgUrl *"
                 />
               </div>
             </Col>
@@ -131,11 +118,11 @@ const EditProfile = () => {
                   name="email"
                   type="email"
                   size="large"
-                  label="Super Admin Email *"
+                  label="User Email *"
                 />
               </div>
             </Col>
-            {/* <Col sm={24} md={24} lg={12}>
+            <Col sm={24} md={24} lg={12}>
               <div
                 style={{
                   marginBottom: "15px",
@@ -145,10 +132,10 @@ const EditProfile = () => {
                   name="password"
                   type="password"
                   size="large"
-                  label="Admin Password"
+                  label="User Password *"
                 />
               </div>
-            </Col> */}
+            </Col>
             <Col sm={24} md={24} lg={12}>
               <div
                 style={{
@@ -159,7 +146,7 @@ const EditProfile = () => {
                   name="contactNo"
                   type="text"
                   size="large"
-                  label="Super Admin ContactNo *"
+                  label="User ContactNo *"
                 />
               </div>
             </Col>
@@ -173,14 +160,14 @@ const EditProfile = () => {
                   name="address"
                   type="text"
                   size="large"
-                  label="Super Admin Address *"
+                  label="User Address *"
                 />
               </div>
             </Col>
           </Row>
 
           <Button type="primary" htmlType="submit">
-            Update
+            Create
           </Button>
         </Form>
       </div>
@@ -188,4 +175,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default CreatePage;

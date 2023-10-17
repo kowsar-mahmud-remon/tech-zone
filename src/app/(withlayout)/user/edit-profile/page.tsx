@@ -3,12 +3,11 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { useCreateAdminMutation } from "@/redux/features/admin/adminApi";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "@/redux/features/user/userApi";
-import { adminSchema } from "@/schemas/admin";
+import { editAdminSchema } from "@/schemas/editAdminSchema";
 import { getUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
@@ -20,7 +19,6 @@ const EditProfile = () => {
   const router = useRouter();
 
   const { data: superAdminData, isLoading } = useGetSingleUserQuery(_id);
-  console.log(superAdminData?.data);
 
   const [updateUser, { data: userData }] = useUpdateUserMutation();
 
@@ -34,13 +32,11 @@ const EditProfile = () => {
       const res: any = await updateUser(updatedData);
 
       if (res?.data?.success) {
-        message.success("Admin Updated successful");
+        message.success("User Updated successful");
         router.push(`/${role}`);
       } else {
-        message.error("Failed to update admin");
+        message.error("Failed to update user");
       }
-
-      console.log(userData);
     } catch (err: any) {
       console.error(err.message);
       message.error(err.message);
@@ -85,12 +81,12 @@ const EditProfile = () => {
             marginBottom: "15px",
           }}
         >
-          Admin Information
+          User Information
         </p>
         <Form
           submitHandler={onSubmit}
           defaultValues={defaultValues}
-          resolver={yupResolver(adminSchema)}
+          resolver={yupResolver(editAdminSchema)}
         >
           <Row gutter={{ lg: 32 }}>
             <Col sm={24} md={24} lg={12}>
@@ -103,7 +99,7 @@ const EditProfile = () => {
                   name="name"
                   type="text"
                   size="large"
-                  label="Admin Name"
+                  label="User Name *"
                 />
               </div>
             </Col>
@@ -117,7 +113,7 @@ const EditProfile = () => {
                   name="imgUrl"
                   type="text"
                   size="large"
-                  label="Admin ImgUrl"
+                  label="User ImgUrl *"
                 />
               </div>
             </Col>
@@ -131,7 +127,7 @@ const EditProfile = () => {
                   name="email"
                   type="email"
                   size="large"
-                  label="Admin Email"
+                  label="User Email *"
                 />
               </div>
             </Col>
@@ -145,7 +141,7 @@ const EditProfile = () => {
                   name="password"
                   type="password"
                   size="large"
-                  label="Admin Password"
+                  label="User Password"
                 />
               </div>
             </Col> */}
@@ -159,7 +155,7 @@ const EditProfile = () => {
                   name="contactNo"
                   type="text"
                   size="large"
-                  label="Admin ContactNo"
+                  label="User ContactNo *"
                 />
               </div>
             </Col>
@@ -173,7 +169,7 @@ const EditProfile = () => {
                   name="address"
                   type="text"
                   size="large"
-                  label="Admin Address"
+                  label="User Address *"
                 />
               </div>
             </Col>

@@ -8,9 +8,12 @@ import { adminSchema } from "@/schemas/admin";
 import { getUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
+import { useRouter } from "next/navigation";
 
 const CreatePage = () => {
   const { role } = getUserInfo() as any;
+
+  const router = useRouter();
 
   const [createAdmin, { data: adminData }] = useCreateAdminMutation();
 
@@ -28,6 +31,7 @@ const CreatePage = () => {
 
       if (res?.data?.success) {
         message.success("Admin created successful");
+        router.push(`/${role}/manage-admin`);
       } else {
         message.error("Failed to create admin");
       }

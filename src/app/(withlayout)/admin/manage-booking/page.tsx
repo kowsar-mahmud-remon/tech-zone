@@ -1,28 +1,30 @@
 "use client";
 
+import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
-
+import {
+  useDeleteAdminMutation,
+  useGetAllAdminsQuery,
+} from "@/redux/features/admin/adminApi";
 import { getUserInfo } from "@/services/auth.service";
 import { Button, message } from "antd";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import {
-  useDeleteUserMutation,
-  useGetAllUsersQuery,
-} from "@/redux/features/user/userApi";
-import ActionBar from "@/components/ui/ActionBar";
+  useDeleteBookingMutation,
+  useGetAllBookingsQuery,
+} from "@/redux/features/booking/bookingApi";
 
-const ManageUser = () => {
-  const { role } = getUserInfo() as any;
+const ManageBookingPage = () => {
+  const { _id, role } = getUserInfo() as any;
 
-  const { data, isLoading } = useGetAllUsersQuery({});
-  console.log({ data });
+  const { data, isLoading } = useGetAllBookingsQuery({});
 
-  const [deleteUser] = useDeleteUserMutation();
+  const [deleteBooking] = useDeleteBookingMutation();
 
-  const users = data?.data;
+  const bookings = data?.data;
 
   const columns = [
     // {
@@ -32,18 +34,14 @@ const ManageUser = () => {
     // },
     {
       title: "Name",
-      dataIndex: "name",
+      dataIndex: "serviceName",
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: "Service Id",
+      dataIndex: "serviceId",
     },
     {
-      title: "Role",
-      dataIndex: "role",
-    },
-    {
-      title: "Created at",
+      title: "Booking Time",
       dataIndex: "createdAt",
       render: function (data: any) {
         return data && dayjs(data).format("MMM D, YYYY hh:mm A");
@@ -51,8 +49,8 @@ const ManageUser = () => {
       sorter: true,
     },
     {
-      title: "Contact no.",
-      dataIndex: "contactNo",
+      title: "Price",
+      dataIndex: "servicePrice",
     },
     {
       title: "Action",
@@ -76,7 +74,7 @@ const ManageUser = () => {
                 <EditOutlined />
               </Button>
             </Link> */}
-            <Button onClick={() => removeUser(data)} type="primary" danger>
+            <Button onClick={() => removeBooking(data)} type="primary" danger>
               <DeleteOutlined />
             </Button>
           </>
@@ -85,15 +83,15 @@ const ManageUser = () => {
     },
   ];
 
-  const removeUser = async (id: any) => {
+  const removeBooking = async (id: any) => {
     const confirmation = window.confirm(
-      "Are you sure you want to delete this user?"
+      "Are you sure you want to Cancel this Booking?"
     );
 
     if (confirmation) {
-      await deleteUser(id);
+      await deleteBooking(id);
 
-      message.success("User Deleted Successfully");
+      message.success("Booking Canceled Successfully");
     }
   };
 
@@ -106,25 +104,19 @@ const ManageUser = () => {
             link: `/${role}`,
           },
           {
-            label: "manage-user",
-            link: `/${role}/manage-user`,
+            label: "manage-booking",
+            link: `/${role}/manage-booking`,
           },
         ]}
       />
 
-      <ActionBar title="User List">
-        <Link href="/admin/manage-user/create">
-          <Button type="primary">Create User</Button>
-        </Link>
-      </ActionBar>
-
       <UMTable
         columns={columns}
-        dataSource={users}
+        dataSource={bookings}
         loading={isLoading}
       ></UMTable>
     </div>
   );
 };
 
-export default ManageUser;
+export default ManageBookingPage;

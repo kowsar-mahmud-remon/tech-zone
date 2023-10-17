@@ -3,12 +3,11 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { useCreateAdminMutation } from "@/redux/features/admin/adminApi";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "@/redux/features/user/userApi";
-import { adminSchema } from "@/schemas/admin";
+import { editAdminSchema } from "@/schemas/editAdminSchema";
 import { getUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
@@ -20,7 +19,6 @@ const EditProfile = () => {
   const router = useRouter();
 
   const { data: superAdminData, isLoading } = useGetSingleUserQuery(_id);
-  console.log(superAdminData?.data);
 
   const [updateUser, { data: userData }] = useUpdateUserMutation();
 
@@ -39,8 +37,6 @@ const EditProfile = () => {
       } else {
         message.error("Failed to update admin");
       }
-
-      console.log(userData);
     } catch (err: any) {
       console.error(err.message);
       message.error(err.message);
@@ -90,7 +86,7 @@ const EditProfile = () => {
         <Form
           submitHandler={onSubmit}
           defaultValues={defaultValues}
-          resolver={yupResolver(adminSchema)}
+          resolver={yupResolver(editAdminSchema)}
         >
           <Row gutter={{ lg: 32 }}>
             <Col sm={24} md={24} lg={12}>

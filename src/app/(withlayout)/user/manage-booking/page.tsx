@@ -41,7 +41,7 @@ const ManageBookingPage = () => {
       dataIndex: "serviceId",
     },
     {
-      title: "Created at",
+      title: "Booking Time",
       dataIndex: "createdAt",
       render: function (data: any) {
         return data && dayjs(data).format("MMM D, YYYY hh:mm A");
@@ -85,13 +85,13 @@ const ManageBookingPage = () => {
 
   const removeBooking = async (id: any) => {
     const confirmation = window.confirm(
-      "Are you sure you want to delete this Booking?"
+      "Are you sure you want to Cancel this Booking?"
     );
 
     if (confirmation) {
       await deleteBooking(id);
 
-      message.success("Booking Deleted Successfully");
+      message.success("Booking Cancelled Successfully");
     }
   };
 

@@ -26,26 +26,32 @@ const NestedPage = ({ params }: any) => {
   const serviceDetails = data?.data;
 
   const handleBooking = async () => {
-    message.loading("Creating...");
-    try {
-      const bookingData = {
-        userId: _id,
-        serviceId: id,
-        serviceName: serviceDetails?.name,
-        servicePrice: serviceDetails?.price,
-      };
+    const confirmation = window.confirm(
+      "Are you sure you want to Confirm Booking?"
+    );
 
-      const res: any = await createBooking(bookingData);
+    if (confirmation) {
+      message.loading("Creating...");
+      try {
+        const bookingData = {
+          userId: _id,
+          serviceId: id,
+          serviceName: serviceDetails?.name,
+          servicePrice: serviceDetails?.price,
+        };
 
-      if (res?.data?.success) {
-        message.success("Booking Added successfully");
-        router.push("/");
-      } else {
-        message.error("Failed to add Booking");
+        const res: any = await createBooking(bookingData);
+
+        if (res?.data?.success) {
+          message.success("Booking Added successfully");
+          router.push("/");
+        } else {
+          message.error("Failed to add Booking");
+        }
+      } catch (err: any) {
+        console.error(err.message);
+        message.error(err.message);
       }
-    } catch (err: any) {
-      console.error(err.message);
-      message.error(err.message);
     }
   };
 
