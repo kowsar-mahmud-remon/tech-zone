@@ -9,6 +9,8 @@ import CreateReview from "@/components/Review/CreateReview";
 import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import { useState } from "react";
 import RepairDetails from "@/components/RepairDetails/RepairDetails";
+import CreateFeedback from "@/components/Feedback/CreateFeedback";
+import Feedback from "@/components/Feedback/Feedback";
 
 const { Meta } = Card;
 
@@ -98,6 +100,10 @@ const NestedPage = ({ params }: any) => {
       <CreateReview id={id}></CreateReview>
 
       <Review id={id}></Review>
+
+      <CreateFeedback id={id}></CreateFeedback>
+
+      <Feedback id={id}></Feedback>
     </div>
   );
 };
