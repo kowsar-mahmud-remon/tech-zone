@@ -31,11 +31,11 @@ const NestedPage = ({ params }: any) => {
       const bookingData = {
         userId: _id,
         serviceId: id,
+        serviceName: serviceDetails?.name,
+        servicePrice: serviceDetails?.price,
       };
 
       const res: any = await createBooking(bookingData);
-
-      console.log(res);
 
       if (res?.data?.success) {
         message.success("Booking Added successfully");
