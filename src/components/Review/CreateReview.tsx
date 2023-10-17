@@ -90,7 +90,7 @@ const CreateReview = ({ id }: any) => {
           </Row>
 
           <Button type="primary" htmlType="submit">
-            Create
+            Add Review
           </Button>
         </Form>
       </div>

@@ -6,20 +6,48 @@ import Image from "next/image";
 import { Button, Col, Row, message } from "antd";
 import Review from "@/components/Review/Review";
 import CreateReview from "@/components/Review/CreateReview";
-import { getUserInfo, isLoggedIn } from "@/services/auth.service";
-import { useState } from "react";
+import { getUserInfo } from "@/services/auth.service";
 import RepairDetails from "@/components/RepairDetails/RepairDetails";
 import CreateFeedback from "@/components/Feedback/CreateFeedback";
 import Feedback from "@/components/Feedback/Feedback";
-
-const { Meta } = Card;
+import { useCreateBookingMutation } from "@/redux/features/booking/bookingApi";
+import { useRouter } from "next/navigation";
 
 const NestedPage = ({ params }: any) => {
   const { id } = params;
+  const { _id } = getUserInfo() as any;
+
+  const router = useRouter();
+
+  const [createBooking] = useCreateBookingMutation();
 
   const { data, isLoading } = useGetSingleServiceQuery(id);
 
   const serviceDetails = data?.data;
+
+  const handleBooking = async () => {
+    message.loading("Creating...");
+    try {
+      const bookingData = {
+        userId: _id,
+        serviceId: id,
+      };
+
+      const res: any = await createBooking(bookingData);
+
+      console.log(res);
+
+      if (res?.data?.success) {
+        message.success("Booking Added successfully");
+        router.push("/");
+      } else {
+        message.error("Failed to add Booking");
+      }
+    } catch (err: any) {
+      console.error(err.message);
+      message.error(err.message);
+    }
+  };
 
   return (
     <div
@@ -68,6 +96,7 @@ const NestedPage = ({ params }: any) => {
             </p>
 
             <Button
+              onClick={handleBooking}
               type="primary"
               size="large"
               style={{
