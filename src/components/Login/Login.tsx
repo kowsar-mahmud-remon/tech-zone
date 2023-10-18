@@ -11,6 +11,7 @@ import { storeUserInfo } from "@/services/auth.service";
 import { adminSchema } from "@/schemas/admin";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
+import Link from "next/link";
 
 type FormValues = {
   id: string;
@@ -40,6 +41,7 @@ const LoginPage = () => {
       storeUserInfo({ accessToken: res?.token });
     } catch (err: any) {
       console.error(err.message);
+      message.error(err.message);
     }
   };
 
@@ -84,9 +86,26 @@ const LoginPage = () => {
                 label="User Password"
               />
             </div>
+
             <Button type="primary" htmlType="submit">
               Login
             </Button>
+
+            <p
+              style={{
+                margin: "10px 0",
+              }}
+            >
+              New to Here{" "}
+              <Link
+                href="/signup"
+                style={{
+                  color: "primary",
+                }}
+              >
+                Create a new Account
+              </Link>
+            </p>
           </Form>
         </div>
       </Col>

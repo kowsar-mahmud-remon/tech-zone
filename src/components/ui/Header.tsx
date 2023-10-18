@@ -55,6 +55,9 @@ const Header = () => {
         <Link href="/profile">
           <Button type="primary">Dashboard</Button>
         </Link>
+        <Link href="/blog">
+          <Button type="primary">Blog</Button>
+        </Link>
         <p
           style={{
             margin: "0px 5px",

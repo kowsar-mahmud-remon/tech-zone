@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import ProductService from "@/components/ProductService/ProductService";
+import Banner from "@/components/Banner/Banner";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         margin: "0px 20px 0px 20px",
       }}
     >
-      <h1>This is root route</h1>
+      <Banner></Banner>
       <ProductService></ProductService>
     </main>
   );

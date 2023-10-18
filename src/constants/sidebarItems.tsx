@@ -6,7 +6,7 @@ import { USER_ROLE } from "./role";
 export const sidebarItems = (role: string) => {
   const defaultSidebarItems: MenuProps["items"] = [
     {
-      label: "profile",
+      label: "Profile",
       key: "profile",
       icon: <ProfileOutlined />,
       children: [
@@ -53,6 +53,19 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/manage-booking`}>Booking History</Link>,
       key: `/${role}/manage-booking`,
       icon: <TableOutlined />,
+    },
+    {
+      label: "Content Management",
+      key: "content",
+      icon: <TableOutlined />,
+      children: [
+        {
+          label: (
+            <Link href={`/${role}/content-management/blog`}>Create Blog</Link>
+          ),
+          key: `/${role}/content-management/blog`,
+        },
+      ],
     },
   ];
 

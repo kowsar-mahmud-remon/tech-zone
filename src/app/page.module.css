@@ -97,7 +97,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -226,4 +226,21 @@
   to {
     transform: rotate(0deg);
   }
+}
+
+/* .bgImg {
+  background-image: url("../assets/maxim-hopman-Hin-rzhOdWs-unsplash.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+} */
+
+.bgImg {
+  background-image: url("../assets/apple.jpg");
+  /* height: 100vh; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
 }
