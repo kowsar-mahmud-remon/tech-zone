@@ -10,7 +10,7 @@ import {
 import { editAdminSchema } from "@/schemas/editAdminSchema";
 import { getUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Col, Row, message } from "antd";
+import { Button, Col, Row, Space, Spin, message } from "antd";
 import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
@@ -50,6 +50,22 @@ const EditProfile = () => {
     contactNo: superAdminData?.data?.contactNo || "",
     address: superAdminData?.data?.address || "",
   };
+
+  if (isLoading) {
+    return (
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Space>
+          <Spin tip="Loading" size="large"></Spin>
+        </Space>
+      </Row>
+    );
+  }
 
   return (
     <div>

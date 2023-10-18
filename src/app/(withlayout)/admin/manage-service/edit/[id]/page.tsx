@@ -2,44 +2,47 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { useCreateAdminMutation } from "@/redux/features/admin/adminApi";
+import {
+  useGetSingleServiceQuery,
+  useUpdateServiceMutation,
+} from "@/redux/features/service/serviceApi";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "@/redux/features/user/userApi";
-import { adminSchema } from "@/schemas/admin";
 import { editAdminSchema } from "@/schemas/editAdminSchema";
+import { editServiceSchema } from "@/schemas/editServiceSchems";
 import { getUserInfo } from "@/services/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, Space, Spin, message } from "antd";
 import { useRouter } from "next/navigation";
 
-const EditProfile = () => {
+const EditProfile = ({ params }: any) => {
   const { _id, role } = getUserInfo() as any;
+  const { id: serviceId } = params;
 
   const router = useRouter();
 
-  const { data: superAdminData, isLoading } = useGetSingleUserQuery(_id);
-  // console.log(superAdminData?.data);
+  const { data: serviceData, isLoading } = useGetSingleServiceQuery(serviceId);
 
-  const [updateUser, { data: userData }] = useUpdateUserMutation();
+  const [updateService, { data: userData }] = useUpdateServiceMutation();
 
   const onSubmit = async (data: any) => {
-    message.loading("Creating...");
+    message.loading("Updating...");
     try {
       const updatedData = {
-        id: _id,
+        id: serviceId,
         data,
       };
-
-      const res: any = await updateUser(updatedData);
+      const res: any = await updateService(updatedData);
 
       if (res?.data?.success) {
-        message.success("Admin Updated successful");
-        router.push(`/${role}`);
+        message.success("Service Updated successful");
+        router.push(`/${role}/manage-service`);
       } else {
-        message.error("Failed to update admin");
+        message.error("Failed to update Service");
       }
     } catch (err: any) {
       console.error(err.message);
@@ -48,11 +51,10 @@ const EditProfile = () => {
   };
 
   const defaultValues = {
-    name: superAdminData?.data?.name || "",
-    imgUrl: superAdminData?.data?.imgUrl || "",
-    email: superAdminData?.data?.email || "",
-    contactNo: superAdminData?.data?.contactNo || "",
-    address: superAdminData?.data?.address || "",
+    name: serviceData?.data?.name || "",
+    imgUrl: serviceData?.data?.imgUrl || "",
+    price: serviceData?.data?.price || "",
+    description: serviceData?.data?.description || "",
   };
 
   if (isLoading) {
@@ -85,7 +87,7 @@ const EditProfile = () => {
           },
         ]}
       />
-      <h1>Update profile</h1>
+      <h1>Update Service</h1>
 
       <div
         style={{
@@ -101,12 +103,12 @@ const EditProfile = () => {
             marginBottom: "15px",
           }}
         >
-          Super Admin Information
+          Service Information
         </p>
         <Form
           submitHandler={onSubmit}
           defaultValues={defaultValues}
-          resolver={yupResolver(editAdminSchema)}
+          resolver={yupResolver(editServiceSchema)}
         >
           <Row gutter={{ lg: 32 }}>
             <Col sm={24} md={24} lg={12}>
@@ -119,7 +121,7 @@ const EditProfile = () => {
                   name="name"
                   type="text"
                   size="large"
-                  label="Super Admin Name *"
+                  label="Service Name *"
                 />
               </div>
             </Col>
@@ -133,7 +135,7 @@ const EditProfile = () => {
                   name="imgUrl"
                   type="text"
                   size="large"
-                  label="Super Admin ImgUrl *"
+                  label="Service ImgUrl *"
                 />
               </div>
             </Col>
@@ -143,11 +145,10 @@ const EditProfile = () => {
                   marginBottom: "15px",
                 }}
               >
-                <FormInput
-                  name="email"
-                  type="email"
-                  size="large"
-                  label="Super Admin Email *"
+                <FormTextArea
+                  name="description"
+                  label="Service Description *"
+                  rows={4}
                 />
               </div>
             </Col>
@@ -161,7 +162,7 @@ const EditProfile = () => {
                   name="password"
                   type="password"
                   size="large"
-                  label="Admin Password"
+                  label="Service Password *"
                 />
               </div>
             </Col> */}
@@ -172,24 +173,10 @@ const EditProfile = () => {
                 }}
               >
                 <FormInput
-                  name="contactNo"
+                  name="price"
                   type="text"
                   size="large"
-                  label="Super Admin ContactNo *"
-                />
-              </div>
-            </Col>
-            <Col sm={24} md={24} lg={12}>
-              <div
-                style={{
-                  marginBottom: "15px",
-                }}
-              >
-                <FormInput
-                  name="address"
-                  type="text"
-                  size="large"
-                  label="Super Admin Address *"
+                  label="Service Price *"
                 />
               </div>
             </Col>

@@ -60,7 +60,7 @@ const ManageServicePage = () => {
                 <EyeOutlined />
               </Button>
             </Link> */}
-            <Link href={`/admin/manage-service/edit/${data.id}`}>
+            <Link href={`/admin/manage-service/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
