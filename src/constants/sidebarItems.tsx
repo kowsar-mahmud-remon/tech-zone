@@ -45,6 +45,11 @@ export const sidebarItems = (role: string) => {
     ...defaultSidebarItems,
     ...commonAdminSidebarItems,
     {
+      label: <Link href={`/${role}/manage-service`}>Manage Service</Link>,
+      key: `/${role}/manage-service`,
+      icon: <TableOutlined />,
+    },
+    {
       label: <Link href={`/${role}/manage-booking`}>Booking History</Link>,
       key: `/${role}/manage-booking`,
       icon: <TableOutlined />,
