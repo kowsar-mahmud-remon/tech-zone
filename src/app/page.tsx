@@ -3,6 +3,8 @@ import styles from "./page.module.css";
 import ProductService from "@/components/ProductService/ProductService";
 import Banner from "@/components/Banner/Banner";
 import ClientReview from "@/components/ClientReview/ClientReview";
+import UpComingService from "@/components/UpComingService/UpComingService";
+import Experience from "@/components/Experience/Experience";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
     >
       <Banner></Banner>
       <ProductService></ProductService>
+      <UpComingService></UpComingService>
+      <Experience></Experience>
       <ClientReview></ClientReview>
     </main>
   );
