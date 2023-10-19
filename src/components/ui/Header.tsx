@@ -1,16 +1,30 @@
 "use client";
 
-import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
+import {
+  Avatar,
+  Button,
+  Col,
+  Dropdown,
+  Layout,
+  MenuProps,
+  Row,
+  Space,
+} from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { getUserInfo, removeUserInfo } from "@/services/auth.service";
+import {
+  getUserInfo,
+  isLoggedIn,
+  removeUserInfo,
+} from "@/services/auth.service";
 const { Header: AntHeader } = Layout;
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Header = () => {
+  const userLoggedIn = isLoggedIn();
+
   const router = useRouter();
-  const [role, setRole] = useState("");
 
   const logOut = () => {
     removeUserInfo("accessToken");
@@ -20,18 +34,19 @@ const Header = () => {
   const items: MenuProps["items"] = [
     {
       key: "0",
-      label: (
+      label: userLoggedIn ? (
         <Button onClick={logOut} type="text" danger>
           Logout
         </Button>
+      ) : (
+        <Link href="/login">
+          <Button type="text" danger>
+            Login
+          </Button>
+        </Link>
       ),
     },
   ];
-
-  useEffect(() => {
-    const { role } = getUserInfo() as any;
-    setRole(role);
-  }, []);
 
   return (
     <AntHeader
@@ -42,38 +57,86 @@ const Header = () => {
       }
     >
       <Row
-        justify="end"
-        align="middle"
+        // justify="end"
+        // align="middle"
         style={{
           height: "100%",
         }}
       >
-        <Link href="/">
-          <Button type="primary">Home</Button>
-        </Link>
-
-        <Link href="/profile">
-          <Button type="primary">Dashboard</Button>
-        </Link>
-        <Link href="/blog">
-          <Button type="primary">Blog</Button>
-        </Link>
-        <p
+        <Col sm={24} md={12} lg={12}>
+          <h1
+            style={{
+              fontSize: "30px",
+              color: "white",
+            }}
+          >
+            Tech Zone
+          </h1>
+        </Col>
+        <Col
+          sm={24}
+          md={12}
+          lg={12}
           style={{
-            margin: "0px 5px",
-            color: "white",
+            display: "flex",
+            justifyContent: "end",
           }}
         >
-          {role}
-        </p>
+          <Link
+            href="/"
+            style={{
+              marginLeft: "16px",
+            }}
+          >
+            <Button type="primary">Home</Button>
+          </Link>
 
-        <Dropdown menu={{ items }}>
-          <a>
-            <Space wrap size={16}>
-              <Avatar size="large" icon={<UserOutlined />} />
-            </Space>
-          </a>
-        </Dropdown>
+          <Link
+            href="/services"
+            style={{
+              marginLeft: "16px",
+            }}
+          >
+            <Button type="primary">Services</Button>
+          </Link>
+          <Link
+            href="/profile"
+            style={{
+              marginLeft: "16px",
+            }}
+          >
+            <Button type="primary">Dashboard</Button>
+          </Link>
+          <Link
+            href="/blog"
+            style={{
+              marginLeft: "16px",
+            }}
+          >
+            <Button type="primary">Blog</Button>
+          </Link>
+          {/* <p
+            style={{
+              margin: "0px 5px",
+              color: "white",
+            }}
+          >
+            {role}
+          </p> */}
+
+          <Dropdown menu={{ items }}>
+            <a
+              style={{
+                marginLeft: "16px",
+                color: "blue",
+              }}
+            >
+              <Space wrap size={16}>
+                <Avatar size="large" icon={<UserOutlined />} />
+              </Space>
+            </a>
+          </Dropdown>
+        </Col>
       </Row>
     </AntHeader>
   );
