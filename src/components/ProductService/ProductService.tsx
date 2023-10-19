@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetAllServicesQuery } from "@/redux/features/service/serviceApi";
-import { Col, Row } from "antd";
+import { Col, Row, Space, Spin } from "antd";
 import { Card } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +12,22 @@ const ProductService = () => {
   const { data, isLoading } = useGetAllServicesQuery({});
 
   const allServices = data?.data;
+
+  if (isLoading) {
+    return (
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Space>
+          <Spin tip="Loading" size="large"></Spin>
+        </Space>
+      </Row>
+    );
+  }
 
   console.log(data);
   return (
