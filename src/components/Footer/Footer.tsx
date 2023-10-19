@@ -15,7 +15,7 @@ const FooterPage = () => {
     <div
       style={{
         padding: "40px 0",
-        background: "silver",
+        background: "#001529",
       }}
     >
       <Row
@@ -37,6 +37,7 @@ const FooterPage = () => {
             <h1
               style={{
                 fontSize: "40px",
+                color: "white",
               }}
             >
               Tech Zone
@@ -49,6 +50,7 @@ const FooterPage = () => {
               marginBottom: "20px",
               display: "flex",
               justifyContent: "center",
+              color: "white",
             }}
           >
             <FacebookOutlined
@@ -79,7 +81,12 @@ const FooterPage = () => {
         </Col>
       </Row>
       <Footer
-        style={{ textAlign: "center", fontSize: "18px", background: "silver" }}
+        style={{
+          textAlign: "center",
+          fontSize: "18px",
+          background: "#001529",
+          color: "white",
+        }}
       >
         Tech Zone ©2023 Created by ME
       </Footer>
