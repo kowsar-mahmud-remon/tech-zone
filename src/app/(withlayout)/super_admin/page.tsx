@@ -27,7 +27,7 @@ const SuperAdminPage = () => {
           color: "green",
         }}
       >
-        Admin Information
+        Super Admin Information
       </h1>
       <h1>Name: {userInfo?.name}</h1>
       <h1>Email: {userInfo?.email}</h1>

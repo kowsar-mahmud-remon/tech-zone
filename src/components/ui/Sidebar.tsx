@@ -30,18 +30,6 @@ const Sidebar = () => {
         bottom: 0,
       }}
     >
-      <div
-        className=""
-        style={{
-          color: "white",
-          fontSize: "2rem",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginBottom: "1rem",
-        }}
-      >
-        Tech Zone
-      </div>
       <Menu
         theme="dark"
         defaultSelectedKeys={["1"]}

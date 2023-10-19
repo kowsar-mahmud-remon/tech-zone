@@ -27,7 +27,7 @@ const UserPage = () => {
           color: "green",
         }}
       >
-        Admin Information
+        User Information
       </h1>
 
       <h1>Name: {userInfo?.name}</h1>
