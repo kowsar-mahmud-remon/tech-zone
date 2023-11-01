@@ -50,13 +50,20 @@ const Navbar = () => {
             width: "200px",
           }}
         >
-          <h1
+          <Link
+            href="/"
             style={{
-              color: "white",
+              textDecoration: "none",
             }}
           >
-            TechZone
-          </h1>
+            <h1
+              style={{
+                color: "white",
+              }}
+            >
+              Tech Zone
+            </h1>
+          </Link>
         </div>
         <div
           style={{

@@ -16,10 +16,25 @@
   .menuIcon {
     display: flex;
   }
+
+  .mainBanner {
+    height: 300px;
+  }
+  .bannerFont {
+    font-size: 40px;
+    padding-top: 100px;
+  }
 }
 
 @media (min-width: 768px) {
   .menuIcon {
     display: none;
+  }
+  .mainBanner {
+    height: 500px;
+  }
+  .bannerFont {
+    font-size: 60px;
+    padding-top: 200px;
   }
 }

@@ -26,14 +26,15 @@ const FooterPage = () => {
         }}
       >
         <Row
-          gutter={{ lg: 32 }}
+          gutter={{ md: 24, lg: 32 }}
           style={{
-            display: "flex",
+            // display: "flex",
             alignItems: "center",
+            // justifyContent: "center",
             margin: "0 20px",
           }}
         >
-          <Col sm={24} md={12} lg={14}>
+          <Col xs={24} sm={24} md={12} lg={14}>
             <div
               style={{
                 marginBottom: "20px",
@@ -51,7 +52,7 @@ const FooterPage = () => {
               </h1>
             </div>
           </Col>
-          <Col sm={24} md={12} lg={10}>
+          <Col xs={24} sm={24} md={12} lg={10}>
             <div
               style={{
                 marginBottom: "20px",

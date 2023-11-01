@@ -44,9 +44,9 @@ const UpComingService = () => {
         <h2>Upcoming Service</h2>
       </Row>
 
-      <Row gutter={{ md: 20, lg: 32 }}>
+      <Row gutter={{ xs: 8, sm: 16, md: 20, lg: 32 }}>
         {upcomingServices?.map((service: any) => (
-          <Col key={service?._id} sm={24} md={12} lg={8}>
+          <Col key={service?._id} xs={24} sm={24} md={12} lg={8}>
             <div
               style={{
                 marginBottom: "30px",

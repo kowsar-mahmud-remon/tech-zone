@@ -12,18 +12,18 @@ const Banner = () => {
       }}
     >
       <div
+        className="mainBanner"
         style={{
-          width: "60%",
+          width: "100%",
           margin: "0 auto",
-          height: "500px",
         }}
       >
         <h1
+          className="bannerFont"
+          // className={styles.bannerFont}
           style={{
             display: "flex",
             justifyContent: "center",
-            paddingTop: "200px",
-            fontSize: "60px",
             color: "white",
           }}
         >
@@ -35,6 +35,7 @@ const Banner = () => {
             justifyContent: "center",
             fontSize: "20px",
             color: "white",
+            padding: "10px 10px",
           }}
         >
           Repair guides and disassembly information for PC laptops of all

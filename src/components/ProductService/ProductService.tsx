@@ -61,9 +61,14 @@ const ProductService = () => {
       >
         <p>What Do You Need Repaired?</p>
       </Row>
-      <Row gutter={{ md: 20, lg: 32 }}>
+      <Row
+        gutter={{ xs: 8, sm: 16, md: 20, lg: 32 }}
+        style={{
+          justifyContent: "center",
+        }}
+      >
         {allServices?.map((service: any) => (
-          <Col key={service?._id} sm={24} md={12} lg={8}>
+          <Col key={service?._id} xs={24} sm={24} md={12} lg={8}>
             <Link href={`service/${service?._id}`}>
               <div
                 style={{
