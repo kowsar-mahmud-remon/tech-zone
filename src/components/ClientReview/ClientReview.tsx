@@ -5,6 +5,8 @@ import review1 from "../../assets/credit-1.png";
 import review2 from "../../assets/credit-2.png";
 import review3 from "../../assets/credit-3.png";
 import Image from "next/image";
+import { StarFilled } from "@ant-design/icons";
+
 const ClientReview = () => {
   const clientReviews = [
     {
@@ -45,7 +47,7 @@ const ClientReview = () => {
           justifyContent: "center",
           alignItems: "center",
           fontSize: "22px",
-          marginBottom: "40px",
+          marginBottom: "50px",
         }}
       >
         <h2>Top Client Reviews</h2>
@@ -100,7 +102,11 @@ const ClientReview = () => {
                       color: "#4D4D4D",
                     }}
                   >
-                    Rating: {review?.rating}
+                    Rating: <StarFilled style={{ color: "#fadb14" }} />
+                    <StarFilled style={{ color: "#fadb14" }} />
+                    <StarFilled style={{ color: "#fadb14" }} />
+                    <StarFilled style={{ color: "#fadb14" }} />
+                    <StarFilled style={{ color: "#fadb14" }} />
                   </p>
                 </div>
               </div>
@@ -113,7 +119,7 @@ const ClientReview = () => {
                 <p
                   style={{
                     fontSize: "18px",
-                    marginTop: "16px",
+                    marginTop: "20px",
                     color: "#4D4D4D",
                   }}
                 >

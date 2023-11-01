@@ -1,5 +1,24 @@
 "use client";
 
+import {
+  Avatar,
+  Button,
+  Col,
+  Dropdown,
+  Layout,
+  MenuProps,
+  Row,
+  Space,
+} from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import {
+  getUserInfo,
+  isLoggedIn,
+  removeUserInfo,
+} from "@/services/auth.service";
+const { Header: AntHeader } = Layout;
+
 import { Drawer, Menu } from "antd";
 import React, { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
@@ -7,6 +26,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+
   return (
     <div
       style={{
@@ -89,6 +109,32 @@ const Navbar = () => {
 };
 
 function AppMenu({ isInline = false }) {
+  const userLoggedIn = isLoggedIn();
+
+  const router = useRouter();
+
+  const logOut = () => {
+    removeUserInfo("accessToken");
+    router.push("/login");
+  };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "0",
+      label: userLoggedIn ? (
+        <Button onClick={logOut} type="text" danger>
+          Logout
+        </Button>
+      ) : (
+        <Link href="/login">
+          <Button type="text" danger>
+            Login
+          </Button>
+        </Link>
+      ),
+    },
+  ];
+
   return (
     <Menu
       style={{
@@ -105,16 +151,46 @@ function AppMenu({ isInline = false }) {
           key: "home",
         },
         {
-          label: "Contect Us",
-          key: "contact",
+          label: <Link href="/services">Services</Link>,
+          key: "service",
         },
         {
-          label: "About Us",
-          key: "about",
+          label: <Link href="/profile">Dashboard</Link>,
+          key: "profile",
         },
         {
-          label: "Login",
-          key: "login",
+          label: <Link href="/blog">Blog</Link>,
+          key: "blog",
+        },
+        {
+          label: (
+            <Dropdown menu={{ items }}>
+              <a
+                style={{
+                  // marginLeft: "16px",
+                  color: "blue",
+                }}
+              >
+                <Space wrap size={16}>
+                  <Avatar
+                    size="large"
+                    style={{
+                      background: "white",
+                    }}
+                    icon={
+                      <UserOutlined
+                        style={{
+                          color: "#001529",
+                          fontSize: "20px",
+                        }}
+                      />
+                    }
+                  />
+                </Space>
+              </a>
+            </Dropdown>
+          ),
+          key: "dropdown",
         },
       ]}
     ></Menu>

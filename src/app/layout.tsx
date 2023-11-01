@@ -2,7 +2,6 @@ import Providers from "@/lib/Providers";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "@/components/ui/Header";
 import FooterPage from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 
@@ -22,7 +21,6 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <body className={inter.className}>
-          {/* <Header></Header> */}
           <Navbar></Navbar>
           {children}
           <FooterPage></FooterPage>
