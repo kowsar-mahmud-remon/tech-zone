@@ -38,7 +38,7 @@ const UpComingService = () => {
           justifyContent: "center",
           alignItems: "center",
           fontSize: "22px",
-          margin: "20px",
+          marginBottom: "50px",
         }}
       >
         <h2>Upcoming Service</h2>

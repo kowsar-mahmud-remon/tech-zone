@@ -53,9 +53,10 @@ const ProductService = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          margin: "30px 0",
+          marginTop: "20px",
+          marginBottom: "40px",
           fontSize: "20px",
-          color: "#0096FF",
+          color: "#001529",
         }}
       >
         <p>What Do You Need Repaired?</p>

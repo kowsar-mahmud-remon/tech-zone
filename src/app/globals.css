@@ -6,3 +6,20 @@
   margin: 0;
   font-family: "Roboto Condensed", sans-serif;
 }
+
+/* @import "antd/dist/antd.css" */
+
+@media (max-width: 768px) {
+  .headerMenu {
+    display: none;
+  }
+  .menuIcon {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .menuIcon {
+    display: none;
+  }
+}

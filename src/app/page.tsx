@@ -11,7 +11,9 @@ export default function Home() {
   return (
     <main
       style={{
-        margin: "0px 20px 0px 20px",
+        margin: "auto",
+        padding: "0px 20px",
+        maxWidth: "1440px",
       }}
     >
       <Banner></Banner>

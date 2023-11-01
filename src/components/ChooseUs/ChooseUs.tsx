@@ -61,10 +61,10 @@ const ChooseUs = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          margin: "30px 0",
+          marginTop: "20px",
           fontSize: "20px",
-          color: "#0096FF",
-          marginBottom: "40px",
+          color: "#001529",
+          marginBottom: "50px",
         }}
       >
         <p>
@@ -100,7 +100,7 @@ const ChooseUs = () => {
                   style={{
                     width: "125px",
                     height: "125px",
-                    marginBottom: "10px",
+                    marginBottom: "20px",
                   }}
                   alt="service img"
                   width={500}
@@ -120,12 +120,12 @@ const ChooseUs = () => {
 
               <div
                 style={{
-                  height: "260px",
+                  height: "220px",
                 }}
               >
                 <p
                   style={{
-                    fontSize: "17px",
+                    fontSize: "16px",
                     marginTop: "16px",
                     color: "#4D4D4D",
                   }}
