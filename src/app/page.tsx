@@ -6,6 +6,7 @@ import ClientReview from "@/components/ClientReview/ClientReview";
 import UpComingService from "@/components/UpComingService/UpComingService";
 import Experience from "@/components/Experience/Experience";
 import ChooseUs from "@/components/ChooseUs/ChooseUs";
+import Appointment from "@/components/Appointment/Appointment";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
     >
       <Banner></Banner>
       <ProductService></ProductService>
+      <Appointment></Appointment>
       <UpComingService></UpComingService>
       <ChooseUs></ChooseUs>
       <Experience></Experience>

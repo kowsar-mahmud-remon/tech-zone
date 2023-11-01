@@ -244,3 +244,13 @@
   background-size: cover;
   border-radius: 10px;
 }
+
+.appointmentImg {
+  background-image: url("../assets/appointment.jpg");
+  /* height: 100vh; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  color: #001529;
+}

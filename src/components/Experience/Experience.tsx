@@ -51,7 +51,7 @@ const Experience = () => {
         }}
       >
         {experienceDetails?.map((service: any) => (
-          <Col key={service?._id} sm={24} md={12} lg={6}>
+          <Col key={service?._id} xs={24} sm={24} md={12} lg={6}>
             <div
               style={{
                 marginBottom: "30px",

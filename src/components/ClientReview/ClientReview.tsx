@@ -47,11 +47,25 @@ const ClientReview = () => {
           justifyContent: "center",
           alignItems: "center",
           fontSize: "22px",
-          marginBottom: "50px",
+          marginTop: "60px",
         }}
       >
-        <h2>Top Client Reviews</h2>
+        <h2>Best Repair Service</h2>
       </Row>
+      <Row
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "20px",
+          marginBottom: "40px",
+          fontSize: "20px",
+          color: "#001529",
+        }}
+      >
+        <p>What Our Customers Are Saying</p>
+      </Row>
+
       <Row
         gutter={{ lg: 32 }}
         style={{
