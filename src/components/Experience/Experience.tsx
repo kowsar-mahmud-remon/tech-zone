@@ -1,35 +1,43 @@
 import { Col, Row } from "antd";
 import React from "react";
+import {
+  TeamOutlined,
+  SmileOutlined,
+  AndroidOutlined,
+  CodeSandboxOutlined,
+} from "@ant-design/icons";
 
 const Experience = () => {
   const experienceDetails = [
     {
       _id: "1",
-      year: "10",
-      title: "Years of Success",
+      year: "35+",
+      title: "Years service",
+      icon: <TeamOutlined />,
     },
     {
       _id: "2",
-      year: "100",
-      title: "Services",
+      year: "7000",
+      title: "Happy Buyers",
+      icon: <SmileOutlined />,
     },
     {
       _id: "3",
-      year: "5000",
-      title: "Clients",
+      year: "99%",
+      title: "Devices Fixed",
+      icon: <AndroidOutlined />,
     },
     {
       _id: "4",
-      year: "1400",
-      title: "Products",
+      year: "1275",
+      title: "National Awards",
+      icon: <CodeSandboxOutlined />,
     },
   ];
   return (
     <div
       style={{
-        // width: "80%",
-        // margin: "0 auto",
-        padding: "20px 0",
+        padding: "50px 0",
       }}
     >
       <Row
@@ -38,14 +46,14 @@ const Experience = () => {
           justifyContent: "center",
           alignItems: "center",
           fontSize: "22px",
-          margin: "20px",
+          marginBottom: "40px",
         }}
       >
         <h2>Our Experience</h2>
       </Row>
 
       <Row
-        gutter={{ md: 20, lg: 32 }}
+        gutter={{ xs: 20, sm: 20, md: 20, lg: 32 }}
         style={{
           paddingTop: "20px",
         }}
@@ -57,32 +65,53 @@ const Experience = () => {
                 marginBottom: "30px",
                 display: "flex",
                 justifyContent: "center",
-                background: "silver",
-                height: "200px",
-                borderRadius: "5px",
               }}
             >
               <div
                 style={{
-                  marginTop: "50px",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                <h1
+                <div
                   style={{
-                    fontSize: "40px",
-                    color: "#0096FF",
-                    marginBottom: "20px",
+                    fontSize: "45px",
+                    color: "#001529",
+                    marginRight: "15px",
                   }}
                 >
-                  {service?.year}+
-                </h1>
-                <p
+                  {service.icon}
+                </div>
+
+                <span
                   style={{
-                    fontSize: "18px",
+                    width: "1px",
+                    height: "40px",
+                    background: "silver",
+                  }}
+                ></span>
+                <div
+                  style={{
+                    marginLeft: "15px",
                   }}
                 >
-                  {service?.title}
-                </p>
+                  <h1
+                    style={{
+                      fontSize: "40px",
+                      color: "#001529",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {service?.year}
+                  </h1>
+                  <p
+                    style={{
+                      fontSize: "18px",
+                    }}
+                  >
+                    {service?.title}
+                  </p>
+                </div>
               </div>
             </div>
           </Col>
