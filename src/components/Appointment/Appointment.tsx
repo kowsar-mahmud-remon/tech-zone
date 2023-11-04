@@ -10,6 +10,7 @@ const Appointment = () => {
       className={styles.appointmentImg}
       style={{
         padding: "200px 0",
+        margin: "30px 0",
       }}
     >
       <h1

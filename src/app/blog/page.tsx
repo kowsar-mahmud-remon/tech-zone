@@ -59,8 +59,9 @@ const Blog = () => {
                 style={{
                   fontSize: "22px",
                   borderRadius: "5px",
-                  background: "#0096FF",
+                  background: "#001529",
                   padding: "10px",
+                  color: "#C0C0C0",
                 }}
               >
                 {details?.title}

@@ -41,7 +41,7 @@ const ChooseUs = () => {
   return (
     <div
       style={{
-        margin: "50px 0",
+        padding: "50px 0",
       }}
     >
       <Row
