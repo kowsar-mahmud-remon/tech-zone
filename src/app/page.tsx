@@ -8,6 +8,7 @@ import Experience from "@/components/Experience/Experience";
 import ChooseUs from "@/components/ChooseUs/ChooseUs";
 import Appointment from "@/components/Appointment/Appointment";
 import AboutUs from "@/components/AboutUs/AboutUs";
+import Brands from "@/components/Brands/Brands";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <ChooseUs></ChooseUs>
       <Experience></Experience>
       <ClientReview></ClientReview>
+      <Brands></Brands>
     </main>
   );
 }

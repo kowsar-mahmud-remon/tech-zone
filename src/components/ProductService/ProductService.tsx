@@ -83,7 +83,7 @@ const ProductService = () => {
                       style={{ width: "100%" }}
                       alt="service img"
                       width={500}
-                      height={200}
+                      height={250}
                       src={service?.imgUrl}
                     />
                   }
