@@ -75,7 +75,7 @@ const Experience = () => {
               >
                 <div
                   style={{
-                    fontSize: "45px",
+                    fontSize: "40px",
                     color: "#001529",
                     marginRight: "15px",
                   }}
@@ -97,7 +97,7 @@ const Experience = () => {
                 >
                   <h1
                     style={{
-                      fontSize: "40px",
+                      fontSize: "35px",
                       color: "#001529",
                       marginBottom: "10px",
                     }}

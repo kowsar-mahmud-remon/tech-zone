@@ -53,14 +53,14 @@ const CreateFeedback = ({ id }: any) => {
       >
         <p
           style={{
-            fontSize: "22px",
+            fontSize: "25px",
             marginBottom: "15px",
             display: "flex",
             justifyContent: "center",
             padding: "10px 0",
           }}
         >
-          Only Login User Add Feedback
+          Add Feedback
         </p>
         <Form submitHandler={onSubmit} resolver={yupResolver(feedbackSchema)}>
           <Row gutter={{ lg: 32 }}>

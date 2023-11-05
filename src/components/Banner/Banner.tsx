@@ -2,6 +2,8 @@
 
 import React from "react";
 import styles from "../../app/page.module.css";
+import Link from "next/link";
+import { Button } from "antd";
 
 const Banner = () => {
   return (
@@ -33,7 +35,7 @@ const Banner = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            fontSize: "20px",
+            fontSize: "18px",
             color: "white",
             padding: "10px 10px",
           }}
@@ -41,6 +43,30 @@ const Banner = () => {
           Repair guides and disassembly information for PC laptops of all
           shapes, sizes, and colors.
         </p>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          <Link href="/services">
+            <Button
+              size="large"
+              style={{
+                // padding: "0 20px",
+                width: "160px",
+                height: "45px",
+                background: "#04294d",
+                border: "0",
+                color: "white",
+              }}
+            >
+              GET STARTED NOW
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

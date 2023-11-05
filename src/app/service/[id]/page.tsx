@@ -1,27 +1,31 @@
 "use client";
 
 import { useGetSingleServiceQuery } from "@/redux/features/service/serviceApi";
-import { Card } from "antd";
+import { Card, Space, Spin } from "antd";
 import Image from "next/image";
 import { Button, Col, Row, message } from "antd";
 import Review from "@/components/Review/Review";
 import CreateReview from "@/components/Review/CreateReview";
-import { getUserInfo } from "@/services/auth.service";
+import { getUserInfo, isLoggedIn } from "@/services/auth.service";
 import RepairDetails from "@/components/RepairDetails/RepairDetails";
 import CreateFeedback from "@/components/Feedback/CreateFeedback";
 import Feedback from "@/components/Feedback/Feedback";
 import { useCreateBookingMutation } from "@/redux/features/booking/bookingApi";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const NestedPage = ({ params }: any) => {
   const { id } = params;
   const { _id } = getUserInfo() as any;
 
+  const userLoggedIn = isLoggedIn();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const router = useRouter();
 
   const [createBooking] = useCreateBookingMutation();
 
-  const { data, isLoading } = useGetSingleServiceQuery(id);
+  const { data, isLoading: dataLoading } = useGetSingleServiceQuery(id);
 
   const serviceDetails = data?.data;
 
@@ -55,6 +59,45 @@ const NestedPage = ({ params }: any) => {
     }
   };
 
+  useEffect(() => {
+    if (!userLoggedIn) {
+      router.push("/login");
+    }
+    setIsLoading(true);
+  }, [router, isLoading]);
+
+  if (!isLoading) {
+    return (
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Space>
+          <Spin tip="Loading" size="large"></Spin>
+        </Space>
+      </Row>
+    );
+  }
+
+  if (dataLoading) {
+    return (
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Space>
+          <Spin tip="Loading" size="large"></Spin>
+        </Space>
+      </Row>
+    );
+  }
+
   return (
     <div
       style={{
@@ -79,7 +122,7 @@ const NestedPage = ({ params }: any) => {
                 fontSize: "40px",
               }}
             >
-              {serviceDetails?.name} Repairs
+              {serviceDetails?.name} Laptop Repairs
             </h1>
             <p
               style={{

@@ -13,7 +13,7 @@ const AboutUs = () => {
       }}
     >
       <Row
-        gutter={{ md: 24, lg: 42 }}
+        gutter={{ md: 24, lg: 32 }}
         style={{
           display: "flex",
           alignItems: "center",

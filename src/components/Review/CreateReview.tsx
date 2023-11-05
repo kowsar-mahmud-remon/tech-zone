@@ -50,14 +50,14 @@ const CreateReview = ({ id }: any) => {
       >
         <p
           style={{
-            fontSize: "22px",
+            fontSize: "25px",
             marginBottom: "15px",
             display: "flex",
             justifyContent: "center",
             padding: "10px 0",
           }}
         >
-          Only Login User Create Review
+          Create Review
         </p>
         <Form submitHandler={onSubmit} resolver={yupResolver(reviewSchema)}>
           <Row gutter={{ lg: 32 }}>

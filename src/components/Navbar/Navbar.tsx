@@ -192,7 +192,8 @@ function AppMenu({ isInline = false }) {
                       <UserOutlined
                         style={{
                           color: "#001529",
-                          fontSize: "20px",
+                          fontSize: "23px",
+                          paddingBottom: "40px",
                         }}
                       />
                     }
