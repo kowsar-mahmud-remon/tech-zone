@@ -85,7 +85,7 @@ const ChooseUs = () => {
             <div
               style={{
                 marginBottom: "40px",
-                boxShadow: "0 0 1rem silver",
+                boxShadow: "0 0 10px silver",
                 padding: "20px",
                 borderRadius: "10px",
               }}

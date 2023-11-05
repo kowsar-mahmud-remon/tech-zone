@@ -32,6 +32,10 @@ const Navbar = () => {
       style={{
         backgroundColor: "#001529",
         padding: "10px 0",
+        position: "sticky",
+        // width: "100%",
+        top: "0px",
+        zIndex: "100",
       }}
     >
       <div
@@ -47,7 +51,7 @@ const Navbar = () => {
           style={{
             // height: "100vh",
             // backgroundColor: "rgba(0,150,250)",
-            width: "200px",
+            width: "300px",
           }}
         >
           <Link

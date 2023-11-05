@@ -94,11 +94,11 @@ const AboutUs = () => {
             >
               <Link href="/services">
                 <Button
-                  size="large"
+                  size="small"
                   style={{
                     // padding: "0 20px",
-                    width: "130px",
-                    height: "45px",
+                    width: "120px",
+                    height: "40px",
                     background: "#04294d",
                     border: "0",
                     color: "white",

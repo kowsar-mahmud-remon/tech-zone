@@ -253,3 +253,11 @@
   background-size: cover;
   border-radius: 10px;
 }
+
+.footerImg {
+  background-image: url("../assets/footerImg.jpg");
+  /* height: 100vh; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
