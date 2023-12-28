@@ -47,10 +47,7 @@ const Review = ({ id }: any) => {
                   fontSize: "18px",
                 }}
               >
-                Name:{" "}
-                <span style={{ color: "#C0C0C0" }}>
-                  {details?.userId?.name}
-                </span>
+                Name: {details?.userId?.name}
               </p>
               <p
                 style={{
