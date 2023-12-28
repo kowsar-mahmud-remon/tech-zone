@@ -5,7 +5,9 @@ import {
   useGetSingleReviewQuery,
 } from "@/redux/features/review/reviewApi";
 import { Col, Row } from "antd";
+import Image from "next/image";
 import React from "react";
+import reviewImg from "../../assets/reviewImg.png";
 
 const Review = ({ id }: any) => {
   const { data, isLoading } = useGetSingleReviewQuery(id);
@@ -37,28 +39,49 @@ const Review = ({ id }: any) => {
                 marginBottom: "50px",
                 border: "1px solid silver",
                 borderRadius: "10px",
+                padding: "30px 0",
+                background: "#d3d3d3",
               }}
             >
-              <p
+              <div
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  margin: "30px 0px",
-                  fontSize: "18px",
+                  alignItems: "center",
                 }}
               >
-                Name: {details?.userId?.name}
-              </p>
-              <p
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "30px 0px",
-                  fontSize: "18px",
-                }}
-              >
-                Rating: {details?.rating}
-              </p>
+                <Image
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    borderRadius: "50%",
+                    backgroundColor: "white",
+                    marginRight: "20px",
+                  }}
+                  alt="service img"
+                  width={500}
+                  height={400}
+                  src={reviewImg}
+                />
+                <div>
+                  <p
+                    style={{
+                      fontSize: "18px",
+                    }}
+                  >
+                    Name: {details?.userId?.name}
+                  </p>
+                  <p
+                    style={{
+                      margin: "10px 0px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    Rating: {details?.rating}
+                  </p>
+                </div>
+              </div>
+
               <p
                 style={{
                   display: "flex",
