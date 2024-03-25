@@ -10,7 +10,6 @@ const Feedback = ({ id }: any) => {
   const { data, isLoading } = useGetSingleFeedbackQuery(id);
 
   const feedbackDetails = data?.data;
-
   return (
     <div>
       <Row
